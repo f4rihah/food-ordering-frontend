@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Food Order Pro</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li *ngIf="isLoggedIn$ | async" class="nav-item">
+          <a class="nav-link active" routerLink="/" routerLinkActive="active" aria-current="page">Home</a>
+        </li>
+        <li *ngIf="isLoggedIn$ | async" class="nav-item">
+          <a class="nav-link" routerLink="/orderform">Order Form</a>
+        </li>
+        <li *ngIf="showOrderManagementLink() | async" class="nav-item">
+          <a class="nav-link" routerLink="/ordermanagement">Order Management</a>
+        </li>
+        <li *ngIf="isLoggedIn$ | async" class="nav-item">
+          <a class="nav-link" routerLink="/faq">FAQ</a>
+        </li>
+        <li *ngIf="isLoggedIn$ | async" class="nav-item">
+          <a class="nav-link" routerLink="/aboutus">About Us</a>
+        </li>
+        <li *ngIf="isLoggedIn$ | async" class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Log Out</a>
+        </li>
+        <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+        <!-- Dropdown and other items can go here -->
+      </ul>
+      <!-- Search form can go here -->
+    </div>
+  </div>
+</nav>

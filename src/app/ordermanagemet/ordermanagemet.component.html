@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="mb-4">Order Management</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#Order ID</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Table Number</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders$ | async">
+              <th scope="row">{{ order.order_id }}</th>
+              <td>{{ order.customer_name }}</td>
+              <td>{{ order.table_number }}</td>
+              <td>{{ order.order_status }}</td>
+              <td>
+                <button class="btn btn-info" (click)="updateOrderStatus(order.order_id, 'Completed')">Complete</button>
+                <button class="btn btn-danger" (click)="deleteOrder(order.order_id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

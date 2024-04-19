@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4 text-center">Food Menu</h1>
+      
+      <div class="mb-4">
+        <select class="form-control" [(ngModel)]="selectedCategory" (change)="loadFoods()">
+          <option value="">All Categories</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+      </div>
+
+      <div *ngIf="foods$ | async as foods; else loading">
+        <div class="card-deck">
+          <div class="card mb-4" *ngFor="let food of foods" (click)="navigateToProduct(food.id)">
+            <img class="card-img-top" [src]="food.imageUrl" alt="Food Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ food.name }}</h5>
+              <p class="card-text">{{ food.description }}</p>
+              <p class="card-text"><small class="text-muted">Price: RM{{ food.price }}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #loading>
+        <p class="text-center">Loading...</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

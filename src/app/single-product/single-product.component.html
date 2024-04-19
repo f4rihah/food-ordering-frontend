@@ -1,0 +1,15 @@
+<div class="container mt-5" *ngIf="food$ | async as food">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card food-card">
+                <img class="card-img-top" [src]="food.imageUrl" alt="Food image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ food.name }}</h5>
+                    <p class="card-text">{{ food.description }}</p>
+                    <p class="card-text category-text">Category: <span class="category">{{ food.category }}</span></p>
+                    <p class="card-text"><small class="text-muted">Price: RM{{ food.price }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

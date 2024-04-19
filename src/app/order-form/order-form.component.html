@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <form [formGroup]="orderForm" (ngSubmit)="submitOrder()" class="card p-4 shadow-sm">
+      <h2 class="text-center mb-4">Place Your Order</h2>
+      <div class="mb-3">
+        <label for="customerName" class="form-label">Customer Name</label>
+        <input type="text" class="form-control" id="customerName" formControlName="customerName" required placeholder="Enter customer name">
+      </div>
+  
+      <div class="mb-3">
+        <label for="tableNumber" class="form-label">Table Number</label>
+        <input type="text" class="form-control" id="tableNumber" formControlName="tableNumber" required placeholder="Enter table number">
+      </div>
+  
+      <div *ngIf="foods$ | async as foods" class="mb-4">
+        <h4 class="mb-3">Select Foods</h4>
+        <div *ngFor="let food of foods" class="form-check">
+          <input class="form-check-input" type="checkbox" (change)="addFoodToOrder(food)" id="food{{food.id}}">
+          <label class="form-check-label" for="food{{food.id}}">
+            {{ food.name }} - RM{{ food.price }}
+          </label>
+        </div>
+      </div>
+  
+      <div formArrayName="foods" *ngIf="foods.length > 0">
+        <h4 class="mb-3">Selected Foods</h4>
+        <div *ngFor="let foodCtrl of foods.controls; let i = index" [formGroupName]="i" class="mb-3">
+            <label>{{ foods.at(i)?.get('foodId')?.value }} (Quantity)</label>
+            <input type="number" formControlName="quantity" min="1" class="form-control" placeholder="Enter quantity">
+          </div>          
+      </div>
+  
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!orderForm.valid">Submit Order</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="successModalLabel">Order Submitted Successfully</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Your order has been placed successfully.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="redirectToHome()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

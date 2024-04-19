@@ -1,0 +1,42 @@
+.food-card {
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+    .card-img-top {
+        height: auto; // Allow the image to maintain its aspect ratio
+        max-height: none; // Remove the max-height restriction
+        width: 100%; // Width should still be 100% to fit the card
+        object-fit: contain; // Use contain to ensure the full image is shown
+    }
+    .card-body {
+        padding: 1.5rem;
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            &.category-text {
+                font-weight: bold;
+                .category {
+                    color: #007bff; // Or any other color you prefer
+                }
+            }
+        }
+    }
+}
+
+// Maintain the minimalist design
+body {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.container {
+    padding: 2rem 0;
+}
+
+.category-text {
+    font-style: italic;
+}
